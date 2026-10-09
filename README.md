@@ -3,8 +3,8 @@
 ## Overview
 
 An [Open OnDemand](https://openondemand.org/) Batch Connect app that launches
-[Code Server](https://coder.com/) as an interactive web-based session on OSC
-HPC clusters. Code Server provides a full
+[Code Server](https://coder.com/) as an interactive web-based session on the Cirrus
+HPC cluster. Code Server provides a full
 [VS Code](https://code.visualstudio.com/) editing experience running on a
 compute node and accessible through a browser.
 
