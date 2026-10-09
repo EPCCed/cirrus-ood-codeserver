@@ -1,5 +1,22 @@
 ---
+
+<%- node_cores = 288  # number of cores on a Cirrus node -%>
+
 batch_connect:
   template: "basic"
-  conn_params:
-    - code_server_version
+
+script:
+  native:
+    - "--job-name=code-server"
+    - "--account=<%= auto_accounts %>"
+    - "--partition=<%= auto_queues %>"
+    - "--qos=<%= auto_qos %>"
+    - "--time=<%= custom_walltime %>"
+    - "--nodes=1"
+    - "--ntasks-per-node=1"
+    - "--cpus-per-task=<%= num_cores %>"
+<%- if num_cores.to_i == node_cores -%>
+    - "--exclusive"
+<%- end -%>
+    - "--hint=nomultithread"
+    - "--distribution=block:block"

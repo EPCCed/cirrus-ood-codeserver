@@ -1,0 +1,23 @@
+{
+  // The integrated terminal is a login shell so modules and
+  // the like should work as normal.
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.profiles.linux": {
+    "bash": { "path": "bash", "args": ["--login"] }
+  },
+
+  // Don't file watch/search large trees. Don't bother with symlinks either.
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/node_modules/**": true,
+    "**/build/**": true,
+    "**/.cache/**": true
+  },
+  "search.followSymlinks": false,
+
+  // Don't autoforward ports. The links won't work through OOD's proxy.
+  "remote.autoForwardPorts": false,
+
+  // Open straight into the workspace without the welcome page.
+  "workbench.startupEditor": "none"
+}

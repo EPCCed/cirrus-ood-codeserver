@@ -1,0 +1,53 @@
+
+---
+cluster: 
+  - "cirrus"
+form:
+  - auto_accounts
+  - auto_queues
+  - auto_qos
+  - custom_walltime
+  - num_cores
+  - working_dir
+attributes:
+  auto_accounts:
+    help: "The budget to which the job should be charged."
+  auto_queues:
+    value: "standard"
+    help: "Slurm partition on which to run the job."
+  auto_qos:
+    value: "standard"
+    help: "Slurm QoS to use for the job."
+  custom_walltime:
+    label: "Wall time"
+    widget: "text_field"
+    value: "01:00:00"
+    help: "Maximum wall time for which the job may run (HH:MM:SS)."
+  num_cores:
+    widget: select
+    label: "CPU cores"
+    help: |
+      Memory on the node is allocated in proportion to the cores requested.
+      For most users 2, 4 or 8 cores of a standard partition node should be
+      sufficient for code-server, unless performing large parallel builds.
+    options:
+      - ["1 core", "1"]
+      - ["2 cores", "2"]
+      - ["4 cores", "4"]
+      - ["8 cores", "8"]
+      - ["16 cores", "16"]
+      - ["32 cores", "32"]
+      - ["72 cores (quarter a node)", "72"]
+      - ["144 cores (half a node)", "144"]
+      - ["288 cores (a whole node)", "288"]
+    value: "2"
+  working_dir:
+    widget: "path_selector"
+    label: "Project directory"
+    value: "<%= ENV['HOME'].sub('/home/', '/epccfs/') %>"
+    directory: "<%= ENV['HOME'].sub('/home/', '/epccfs/') %>"
+    data-target-file-type: dirs  # Valid values are: files, dirs, or both
+    readonly: false
+    help: |
+      Select your project directory; defaults to your EPCCFS directory.
+      Remember that the home file system is not mounted on the compute nodes.

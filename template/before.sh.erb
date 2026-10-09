@@ -10,4 +10,9 @@ export host="${host}"
 # Generate SHA1 encrypted password (requires OpenSSL installed)
 export password="$(create_passwd 16)"
 
-export code_server_version="<%= context.auto_modules_app_code_server.split('/').last %>"
+# Override HOME to the user's EPCCFS directory, as well as
+# XDG_CONFIG_HOME (for configs) and XDG_DATA_HOME (for extensions).
+export HOME=${HOME/home/epccfs}
+export XDG_CONFIG_HOME=${HOME}
+export XDG_DATA_HOME=${HOME}
+
